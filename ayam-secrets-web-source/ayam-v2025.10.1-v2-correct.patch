@@ -1,0 +1,144 @@
+diff --git a/apps/web/src/app/app.component.html b/apps/web/src/app/app.component.html
+index ace4cf344f..8aeb48968f 100644
+--- a/apps/web/src/app/app.component.html
++++ b/apps/web/src/app/app.component.html
+@@ -4,7 +4,7 @@
+    loading state here for process reloading. -->
+   <div class="tw-flex tw-flex-col tw-min-h-[100vh]">
+     <div class="tw-pt-5 tw-px-5 tw-fixed">
+-      <img class="new-logo-themed !tw-w-[200px]" alt="Vaultwarden" />
++      <img class="new-logo-themed !tw-w-[200px]" alt="Ayam Secure Secrets" />
+     </div>
+     <div class="spinner-container tw-justify-center">
+       <i
+diff --git a/apps/web/src/app/auth/settings/two-factor/two-factor-setup-authenticator.component.ts b/apps/web/src/app/auth/settings/two-factor/two-factor-setup-authenticator.component.ts
+index 178185b2b5..3f5490d04c 100644
+--- a/apps/web/src/app/auth/settings/two-factor/two-factor-setup-authenticator.component.ts
++++ b/apps/web/src/app/auth/settings/two-factor/two-factor-setup-authenticator.component.ts
+@@ -221,11 +221,11 @@ export class TwoFactorSetupAuthenticatorComponent
+     new window.QRious({
+       element: document.getElementById("qr"),
+       value:
+-        "otpauth://totp/Vaultwarden:" +
++        "otpauth://totp/AyamSecureSecrets:" +
+         Utils.encodeRFC3986URIComponent(email) +
+         "?secret=" +
+         encodeURIComponent(this.key) +
+-        "&issuer=Vaultwarden",
++        "&issuer=AyamSecureSecrets",
+       size: 160,
+     });
+   }
+diff --git a/apps/web/src/app/core/router.service.ts b/apps/web/src/app/core/router.service.ts
+index 737d917652..096886c251 100644
+--- a/apps/web/src/app/core/router.service.ts
++++ b/apps/web/src/app/core/router.service.ts
+@@ -61,7 +61,7 @@ export class RouterService {
+       .subscribe((event: NavigationEnd) => {
+         this.currentUrl = event.url;
+ 
+-        let title = "Vaultwarden Web";
++        let title = "Ayam Secure Secrets Web Vault";
+ 
+         if (this.currentUrl.includes("/sm/")) {
+           title = i18nService.t("bitSecretsManager");
+diff --git a/apps/web/src/app/layouts/frontend-layout.component.html b/apps/web/src/app/layouts/frontend-layout.component.html
+index 03c8edf631..5a12fb2ab8 100644
+--- a/apps/web/src/app/layouts/frontend-layout.component.html
++++ b/apps/web/src/app/layouts/frontend-layout.component.html
+@@ -3,12 +3,7 @@
+ <footer class="tw-text-center tw-my-12">
+   <environment-selector></environment-selector>
+ 
+-  <div bitTypography="body2">Vaultwarden Web</div>
++  <div bitTypography="body2">Ayam Secure Secrets Web Vault</div>
+   <div bitTypography="body2">{{ version }}</div>
+   <br />
+-  <div bitTypography="helper" id="vw-disclaimer">
+-    A modified version of the Bitwarden&reg; Web Vault for Vaultwarden (an unofficial rewrite of the
+-    Bitwarden&reg; server).<br />
+-    Vaultwarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
+-  </div>
+ </footer>
+diff --git a/apps/web/src/app/layouts/header/web-header.component.html b/apps/web/src/app/layouts/header/web-header.component.html
+index fa175efbed..3840e7b9af 100644
+--- a/apps/web/src/app/layouts/header/web-header.component.html
++++ b/apps/web/src/app/layouts/header/web-header.component.html
+@@ -65,7 +65,7 @@
+               </a>
+               <a
+                 bitMenuItem
+-                href="https://github.com/dani-garcia/vaultwarden"
++                href="https://ayamsecure.com/contact"
+                 target="_blank"
+                 rel="noreferrer"
+               >
+diff --git a/apps/web/src/favicon.ico b/apps/web/src/favicon.ico
+index 8b64b26fad..1b5b63d5c7 100644
+Binary files a/apps/web/src/favicon.ico and b/apps/web/src/favicon.ico differ
+diff --git a/apps/web/src/index.html b/apps/web/src/index.html
+index 718e1fdd75..54e521ca1e 100644
+--- a/apps/web/src/index.html
++++ b/apps/web/src/index.html
+@@ -5,7 +5,7 @@
+     <meta name="viewport" content="width=1010" />
+     <meta name="theme-color" content="#175DDC" />
+ 
+-    <title page-title>Vaultwarden Web</title>
++    <title page-title>Ayam Secure Secrets Web Vault</title>
+ 
+     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png" />
+     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png" />
+@@ -20,7 +20,7 @@
+       <!-- Note: any changes to this html need to be made in the app.component.html as well -->
+       <div class="tw-flex tw-flex-col tw-min-h-[100vh]">
+         <div class="tw-pt-5 tw-px-5 tw-fixed">
+-          <img class="new-logo-themed !tw-w-[200px]" alt="Vaultwarden" />
++          <img class="new-logo-themed !tw-w-[200px]" alt="Ayam Secure Secrets" />
+         </div>
+         <div class="spinner-container tw-justify-center">
+           <i
+diff --git a/apps/web/src/locales/en/messages.json b/apps/web/src/locales/en/messages.json
+index b2d32cbb80..9eb64cfac2 100644
+--- a/apps/web/src/locales/en/messages.json
++++ b/apps/web/src/locales/en/messages.json
+@@ -1273,7 +1273,7 @@
+     "message": "Location"
+   },
+   "loginOrCreateNewAccount": {
+-    "message": "Log in or create a new account to access your secure vault."
++    "message": "Log in to access your secure vault."
+   },
+   "loginWithDevice": {
+     "message": "Log in with device"
+diff --git a/apps/web/src/manifest.json b/apps/web/src/manifest.json
+index d9ff4771a3..a7d505cb25 100644
+--- a/apps/web/src/manifest.json
++++ b/apps/web/src/manifest.json
+@@ -1,5 +1,5 @@
+ {
+-  "name": "Vaultwarden Web",
++  "name": "Ayam Secure Secrets Web Vault",
+   "icons": [
+     {
+       "src": "images/icons/android-chrome-192x192.png",
+diff --git a/libs/components/src/anon-layout/anon-layout.component.html b/libs/components/src/anon-layout/anon-layout.component.html
+index f1079e5f38..2409e58411 100644
+--- a/libs/components/src/anon-layout/anon-layout.component.html
++++ b/libs/components/src/anon-layout/anon-layout.component.html
+@@ -63,14 +63,9 @@
+       <ng-content select="[slot=environment-selector]"></ng-content>
+     </ng-container>
+     <ng-container *ngIf="!hideYearAndVersion">
+-      <div bitTypography="body2">Vaultwarden Web</div>
++      <div bitTypography="body2">Ayam Secure Secrets Web Vault</div>
+       <div bitTypography="body2">{{ version }}</div>
+       <br />
+-      <div bitTypography="helper" id="vw-disclaimer">
+-        A modified version of the Bitwarden&reg; Web Vault for Vaultwarden (an unofficial rewrite of
+-        the Bitwarden&reg; server).<br />
+-        Vaultwarden is not associated with the Bitwarden&reg; project nor Bitwarden Inc.
+-      </div>
+     </ng-container>
+   </footer>
+ 
